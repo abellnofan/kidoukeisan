@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <link rel="stylesheet2" href="stylesheet2.css">
+    <meta charset="utf-8">
+    <title>Kidoukeisan</title>
+  </head>
+  <body>
+    <h1 class="title">刀剣乱舞機動計算サイト</h1>
+    このサイトでは刀剣乱舞-ONLINEのキャラクターの機動力を自動計算するサイトです。<br>
+    指定された指示通りに入力すると計算することができます。半角数字で入力してください。<br>
+    まだ開発テスト中です。今後新たな機能を実装していくつもりです。<br>
+<form class="keisanki">
+    <dl>
+        <dt>刀剣男子と刀装の機動合計値を入力してください(※馬の機動は除く)</dt>
+        <dd><input type="text" class="box" id="kidou" name="kidou"></dd>
+        <dt>馬の機動値を入力してください : </dt>
+        <dd><input type="text" class="box" id="uma" name="uma"></dd>
+        <dt>合戦上を選択してください</dt>
+        <dd><select class="box" id="senzyou" name="senzyou">
+            <option type="number" value="1">野戦</option>
+            <option type="number" value="0.5">市街戦</option>
+            <option type="number" value="0">夜戦</option>
+        </select></dd>
+        <dt>刀剣男子のレベルを選択してください</dt>
+        <dd><input type="text" class="box" id="Le" name="Le"> </dd>
+        <dt>MAPを選択してください : </dt>
+        <dd><select class="box" id="map" name="map">
+            <option type="number" value="0.04">1~6面・検非違使戦・演練・各種イベントMAP</option>
+            <option type="number" value="0.02">検非違使戦を除く、7面8面</option>
+        </select></dd>
+        <dt>疲労度を選択してください</dt>
+        <dd><select class="box" id="tired" name="tired">
+            <option type="number" value="1.2">無印・特　好調(桜)</option>
+            <option type="number" value="1">無印・特 通常</option>
+            <option type="number" value="0.8">無印・特 疲労(オレンジ)</option>
+            <option type="number" value="0.6">無印・特 疲労(赤)</option>
+            <option type="number" value="1.2">極 好調(桜)</option>
+            <option type="number" value="1">極 通常</option>
+            <option type="number" value="0.7">極 疲労(オレンジ)</option>
+            <option type="number" value="0.5">極 疲労(赤)</option>
+        </select></dd>
+    </dl>
+    <button id="button">計算</button>
+</form>
+    <table>
+        <tr><th>魚鱗陣</th><th>横隊陣</th><th>雁行陣</th></tr>
+        <tr>
+        <th><input id="gyo" class="box" type="text" readonly=""></th>
+        <th><input id="outa" class="box" type="text" readonly=""></th>
+        <th><input id="gan" class="box" type="text" readonly=""></th>
+        </tr>
+        <tr><th>鶴翼陣</th><th>方陣</th><th>逆行陣</th></tr>
+        <tr>
+        <th><input id="kaku" class="box" type="text" readonly=""></th>
+        <th><input id="hou" class="box" type="text" readonly=""></th>
+        <th><input id="gya" class="box" type="text" readonly=""></th>
+        </tr>
+    </table>
+    </body>
+</html>
+
+<script>
+    var button = document.getElementById("button");
+
+    button.addEventListener("click", function(e) {
+        e.preventDefault();
+        var kidou =  document.getElementById("kidou").value;
+        var uma =  document.getElementById("uma").value;
+        var senzyou =  document.getElementById("senzyou").value;
+        var Le =  document.getElementById("Le").value;
+        var map =  document.getElementById("map").value;
+        var tired =  document.getElementById("tired").value;
+
+        var zikkou = (parseFloat(kidou, 10) + (parseFloat(uma, 10) * parseFloat(senzyou, 10))) * (Le * map + 1) * tired * 1;
+
+        var gyo = document.getElementById("gyo");
+        gyo.value = Math.floor(zikkou * 1);
+        var kaku = document.getElementById("kaku");
+        kaku.value = Math.floor(zikkou * 0.9);
+        var outa = document.getElementById("outa");
+        outa.value = Math.floor(zikkou * 1);
+        var hou = document.getElementById("hou");
+        hou.value = Math.floor(zikkou * 0.9);
+        var gan = document.getElementById("gan");
+        gan.value = Math.floor(zikkou * 1.1);
+        var gya = document.getElementById("gya");
+        gya.value = Math.floor(zikkou * 1.2);
+    });
+</script>
