@@ -1,11 +1,27 @@
+<style>
+    .body{
+        background: #eeffff;
+    }
+    .keisanki{
+        background: #eaf4ff;
+        padding: 10px 30px;
+    }
+    .title{
+        color: #ff3366;
+        background: #ffffff;
+    }
+    .table{
+        background: #eaf4ff;
+    }
+</style>
 <html>
   <head>
     <link rel="stylesheet2" href="stylesheet2.css">
     <meta charset="utf-8">
-    <title>刀剣乱舞機動計算サイト</title>
-  </head>
-  <body>
+    <title>Kidoukeisan</title>
     <h1 class="title">刀剣乱舞機動計算サイト</h1>
+  </head>
+  <body class="body">
     このサイトでは刀剣乱舞-ONLINEのキャラクターの機動力を自動計算するサイトです。<br>
     指定された指示通りに入力すると計算することができます。半角数字で入力してください。<br>
     まだ開発テスト中です。今後新たな機能を実装していくつもりです。<br>
@@ -42,7 +58,7 @@
     </dl>
     <button id="button">計算</button>
 </form>
-    <table>
+    <table class="table">
         <tr><th>魚鱗陣</th><th>横隊陣</th><th>雁行陣</th></tr>
         <tr>
         <th><input id="gyo" class="box" type="text" readonly=""></th>
